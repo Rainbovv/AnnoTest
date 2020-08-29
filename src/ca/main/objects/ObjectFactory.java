@@ -7,19 +7,20 @@ import java.lang.reflect.Method;
 
 public class ObjectFactory {
 
-	private ObjectFactory(){};
+	private ObjectFactory(){}
 
-	public AbstractObject getObject(String type) {
+	public AbstractObject getObject(String type) throws Exception {
 
-		AbstractObject object = null;
+		AbstractObject object;
 
 		if (type.equalsIgnoreCase("B")) object = new B();
-		if (type.equalsIgnoreCase("A")) object = new A();
+		else object = new A();
 
-		if (object.getClass().isAnnotationPresent(DefaultValue.class)) {
-			DefaultValue defaultValue = object.getClass().getAnnotation(DefaultValue.class);
-			object.setValue(defaultValue.value());
-		}
+			Field field = object.getClass().getDeclaredField("value");
+
+			if (field.isAnnotationPresent(DefaultValue.class)) {
+				object.setValue(field.getAnnotation(DefaultValue.class).value());
+			}
 		return object;
 	}
 

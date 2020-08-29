@@ -1,13 +1,13 @@
 package ca.main;
 
-import ca.main.objects.A;
+
 import ca.main.objects.AbstractObject;
-import ca.main.objects.B;
+
 import ca.main.objects.ObjectFactory;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		ObjectFactory objectFactory = ObjectFactory.getInstance();
 
@@ -18,8 +18,8 @@ public class App {
 		AbstractObject aDefault = objectFactory.getObject("A");
 
 		System.out.println(bDefault);
-		System.out.println(b);
-		System.out.println(aDefault);
+//		System.out.println(b);
+//		System.out.println(aDefault);
 
 
 	}
